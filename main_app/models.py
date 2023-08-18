@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.postgres.fields import ArrayField
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -8,14 +10,13 @@ class Crew(models.Model):
     name = models.CharField(max_length=50)
     start_date = models.DateTimeField(auto_now_add=True)
     finish_date = models.DateTimeField(null=True, blank=True)
-    member1_name = models.CharField(max_length=50)
-    member2_name = models.CharField(max_length=50)
-    member3_name = models.CharField(max_length=50, blank=True)
-    member4_name = models.CharField(max_length=50, blank=True)
-    member5_name = models.CharField(max_length=50, blank=True)
+    members = ArrayField(
+    models.CharField(max_length=50),
+    size=5,
+)
 
     def __str__(self):
-        return self.names
+        return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'crew_id': self.id})
+        return reverse('crews_detail', kwargs={'pk': self.id})

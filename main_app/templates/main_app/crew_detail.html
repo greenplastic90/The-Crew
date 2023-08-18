@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>{{crew.name}}</h1>
+
+<div class="row">
+	<div class="col s6 col-offset-3">
+		<div class="card">
+			<div class="card-content">
+				<h5>Members:</h5>
+				<ul>
+					{% for member in crew.members %}
+					<li>{{ member }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="card-action"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}

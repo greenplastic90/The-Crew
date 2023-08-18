@@ -24,7 +24,10 @@
 					</ul>
 					<ul></ul>
 					<ul class="right">
-						{% if user.is_authenticated %} {% else %}
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'crews_create' %}">New Crew</a></li>
+						<li><a href="{% url 'crews_list' %}">View All Crews</a></li>
+						{% else %}
 
 						<li><a href="{% url 'login' %}">Log In</a></li>
 						{% endif %}
@@ -32,12 +35,10 @@
 				</div>
 			</nav>
 		</header>
-		{% if user.is_authenticated %}
-		<h2>Welcome {{user.username}}</h2>
-		{% endif %}
+
 		<main class="container">{% block content %} {% endblock %}</main>
 		<footer class="page-footer">
-			<div class="right">All Rights Reserved, &copy; 2022 Cat Collector &nbsp;</div>
+			<div class="right">All Rights Reserved, &copy;</div>
 		</footer>
 	</body>
 </html>
